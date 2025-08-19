@@ -12,6 +12,7 @@ const geistSans = Geist({
 const lobStar = Lobster({
   weight: "400",
   variable: "--font-lobstar",
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
