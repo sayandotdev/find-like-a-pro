@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import Tabs from "./Tabs";
-import Chatbox from "./ChatBox";
+import Tabs from "@/components/Tabs";
+import Chatbox from "@/components/ChatBox";
 
 const BookPage: React.FC = () => {
   const { id } = useParams();

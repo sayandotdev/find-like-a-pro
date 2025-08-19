@@ -13,7 +13,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ bookId }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setError(null); // Clear previous errors
+    setError(null);
     if (e.target.files && e.target.files[0]) {
       const selectedFile = e.target.files[0];
       const validTypes = [
@@ -23,50 +23,34 @@ const FileUpload: React.FC<FileUploadProps> = ({ bookId }) => {
         "text/csv",
         "application/vnd.ms-excel",
       ];
-      console.log("File selected:", {
-        name: selectedFile.name,
-        type: selectedFile.type,
-        size: selectedFile.size,
-      });
       if (validTypes.includes(selectedFile.type)) {
         setFile(selectedFile);
-        console.log("Valid file type:", selectedFile.type);
       } else {
         setError("Please upload a PDF, DOC/DOCX, or CSV file.");
-        console.log("Invalid file type:", selectedFile.type);
         setFile(null);
         if (fileInputRef.current) {
           fileInputRef.current.value = "";
         }
       }
     } else {
-      console.log("No file selected");
       setFile(null);
     }
   };
 
   const handleUpload = () => {
     if (!file) {
-      console.log("No file to upload");
       return;
     }
-    const content = { text: "", file: file.name };
-    localStorage.setItem(`book-content-${bookId}`, JSON.stringify(content));
-    console.log("File metadata saved to localStorage:", file.name);
     alert("File metadata saved!");
     setFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
-      console.log("File input reset");
     }
   };
 
   const handleDivClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
-      console.log("Upload div clicked, triggering file input");
-    } else {
-      console.error("fileInputRef is not assigned");
     }
   };
 
@@ -91,19 +75,22 @@ const FileUpload: React.FC<FileUploadProps> = ({ bookId }) => {
             <Upload className="h-12 w-12 text-gray-400 hover:text-pink-400 transition-colors" />
           )}
           <p className="text-gray-400 text-sm">
-            {file ? "File selected" : "Click to upload PDF, DOC, or CSV"}
+            {file ? file.name : "Click to upload PDF, DOC, or CSV"}
           </p>
         </div>
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
       <button
-        className="px-4 py-2 bg-gradient-to-r from-pink-600 to-violet-600 text-white rounded hover:from-pink-500 hover:to-violet-500 transition-all"
+        className={`px-4 py-2 rounded-md ${
+          !file
+            ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+            : "bg-gradient-to-r from-pink-600 to-violet-600 text-whitehover:from-pink-500 hover:to-violet-500 transition-all"
+        }`}
         onClick={handleUpload}
         disabled={!file}
       >
         Upload File
       </button>
-      {file && <p className="text-gray-400">Selected: {file.name}</p>}
     </div>
   );
 };

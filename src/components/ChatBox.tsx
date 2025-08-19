@@ -44,7 +44,11 @@ const Chatbox: React.FC = () => {
           onKeyDown={(e) => e.key === "Enter" && handleChatSubmit()}
         />
         <button
-          className="p-2 bg-gradient-to-r from-pink-600 to-violet-600 rounded hover:from-pink-500 hover:to-violet-500 transition-all"
+          className={`py-1.5 px-2 rounded-md ${
+            !chatInput
+              ? "bg-gray-700 text-gray-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-pink-600 to-violet-600 rounded hover:from-pink-500 hover:to-violet-500 transition-all"
+          }`}
           onClick={handleChatSubmit}
         >
           <Send className="h-5 w-5" />

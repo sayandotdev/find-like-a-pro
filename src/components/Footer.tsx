@@ -9,7 +9,7 @@ const Footer = () => {
       |{" "}
       <div className="flex items-center justify-center">
         <Link
-          href={""}
+          href={"https://github.com/sayandotdev/find-like-a-pro"}
           target="_blank"
           className="hover:text-pink-400 transition-colors mx-1"
           rel="noreferrer noopener"

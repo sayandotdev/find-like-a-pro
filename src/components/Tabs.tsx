@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TextInput from "./TextInput";
-import FileUpload from "./FileUpload";
+import FileUpload from "@/components/FileUpload";
 
 interface TabsProps {
   bookId: string;
