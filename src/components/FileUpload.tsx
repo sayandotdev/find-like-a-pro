@@ -7,7 +7,7 @@ interface FileUploadProps {
   bookId: string;
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ bookId }) => {
+const FileUpload: React.FC<FileUploadProps> = () => {
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -41,7 +41,6 @@ const FileUpload: React.FC<FileUploadProps> = ({ bookId }) => {
     if (!file) {
       return;
     }
-    alert("File metadata saved!");
     setFile(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";

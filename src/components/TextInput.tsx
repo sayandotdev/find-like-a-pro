@@ -6,7 +6,7 @@ interface TextInputProps {
   bookId: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({ bookId }) => {
+const TextInput: React.FC<TextInputProps> = () => {
   const [textContent, setTextContent] = useState("");
 
   return (

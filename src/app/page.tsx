@@ -5,15 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import { motion } from "framer-motion";
-import {
-  PlusCircle,
-  BookOpen,
-  Sparkles,
-  Github,
-  UserStar,
-  Trash2,
-} from "lucide-react";
-import Navbar from "@/components/Navbar";
+import { PlusCircle, BookOpen, Sparkles, Trash2 } from "lucide-react";
 
 const features = [
   {
@@ -84,41 +76,13 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div
-          className="absolute animate-particle-1 opacity-15"
-          style={{ top: "10%", left: "15%" }}
-        >
-          <BookOpen className="h-12 w-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500" />
-        </div>
-        <div
-          className="absolute animate-particle-2 opacity-15"
-          style={{ top: "60%", right: "20%" }}
-        >
-          <BookOpen className="h-12 w-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500" />
-        </div>
-        <div
-          className="absolute animate-particle-3 opacity-15"
-          style={{ bottom: "10%", left: "50%" }}
-        >
-          <BookOpen className="h-12 w-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500" />
-        </div>
-        <div
-          className="absolute animate-particle-4 opacity-15"
-          style={{ top: "30%", right: "30%" }}
-        >
-          <BookOpen className="h-12 w-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500" />
-        </div>
-      </div>
-
-
       <motion.section
         className="relative flex flex-col items-center justify-center min-h-[70vh] text-center px-4 z-10"
         variants={heroVariants}
         initial="hidden"
         animate="visible"
       >
-        <h2 className="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500">
+        <h2 className="text-5xl font-[var(--lobStar)] md:text-7xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500">
           FIND LIKE A PRO
         </h2>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
