@@ -64,14 +64,23 @@ const HomePage: React.FC = () => {
     router.push(`/book/${urlName}`);
   };
 
-  const handleDeleteBook = (id: string) => {
+  const handleDeleteBook = async (id: string) => {
     const book = books.find((b) => b.id === id);
     if (book) {
-      const updatedBooks = books.filter((b) => b.id !== id);
-      setBooks(updatedBooks);
-      localStorage.setItem("books", JSON.stringify(updatedBooks));
-      localStorage.removeItem(`book-chat-${id}`);
-      localStorage.removeItem(`book-content-${id}`);
+      const res = await fetch(`/api/delete-book`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bookId: book?.urlName }),
+      });
+      if (res?.ok) {
+        const updatedBooks = books.filter((b) => b.id !== id);
+        setBooks(updatedBooks);
+        localStorage.setItem("books", JSON.stringify(updatedBooks));
+        localStorage.removeItem(`book-chat-${id}`);
+        localStorage.removeItem(`book-content-${id}`);
+      }
     }
     setDeleteBookId(null);
   };
