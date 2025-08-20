@@ -77,7 +77,7 @@ const Chatbox: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message: chatInput }),
+        body: JSON.stringify({ message: chatInput, bookId: urlName }),
       });
 
       if (!response.ok) {

@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { Upload, File, Cloud, ArrowUpFromLine, BookMarked } from "lucide-react";
+import { useParams } from "next/navigation";
 
 interface FileUploadProps {
   bookId: string;
@@ -14,6 +15,7 @@ interface Data {
 
 const FileUpload: React.FC<FileUploadProps> = () => {
   const [file, setFile] = useState<File | null>(null);
+  const { id: urlName } = useParams<{ id: string }>();
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -56,7 +58,10 @@ const FileUpload: React.FC<FileUploadProps> = () => {
       const response = await fetch("/api/indexing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ filePath }),
+        body: JSON.stringify({
+          filePath: filePath,
+          bookId: urlName,
+        }),
       });
 
       if (!response.ok) {
@@ -120,7 +125,7 @@ const FileUpload: React.FC<FileUploadProps> = () => {
         type="file"
         ref={fileInputRef}
         id="file-of-user"
-        accept=".pdf"
+        accept=".pdf, .doc, .docx, .csv"
         onChange={handleFileChange}
         className="hidden"
       />
