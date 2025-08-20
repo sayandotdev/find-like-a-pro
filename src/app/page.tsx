@@ -46,7 +46,9 @@ const HomePage: React.FC = () => {
   }, []);
 
   const handleCreateBook = () => {
-    if (!newBookName.trim()) return;
+    if (!newBookName.trim()) {
+      return;
+    }
     const urlName = newBookName.trim().toLowerCase().replace(/\s+/g, "-");
     const newBook = {
       id: uuidv4(),
@@ -63,9 +65,14 @@ const HomePage: React.FC = () => {
   };
 
   const handleDeleteBook = (id: string) => {
-    const updatedBooks = books.filter((book) => book.id !== id);
-    setBooks(updatedBooks);
-    localStorage.setItem("books", JSON.stringify(updatedBooks));
+    const book = books.find((b) => b.id === id);
+    if (book) {
+      const updatedBooks = books.filter((b) => b.id !== id);
+      setBooks(updatedBooks);
+      localStorage.setItem("books", JSON.stringify(updatedBooks));
+      localStorage.removeItem(`book-chat-${id}`);
+      localStorage.removeItem(`book-content-${id}`);
+    }
     setDeleteBookId(null);
   };
 
@@ -77,12 +84,12 @@ const HomePage: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
       <motion.section
-        className="relative flex flex-col items-center justify-center min-h-[70vh] text-center px-4 z-10"
+        className="relative flex flex-col items-center justify-center min-h-[70vh] text-center px-4"
         variants={heroVariants}
         initial="hidden"
         animate="visible"
       >
-        <h2 className="text-5xl font-[var(--lobStar)] md:text-7xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500">
+        <h2 className="text-5xl md:text-7xl mb-4 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-violet-500 to-pink-500">
           FIND LIKE A PRO
         </h2>
         <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8">
@@ -107,7 +114,7 @@ const HomePage: React.FC = () => {
       </motion.section>
 
       {isCreatePopupOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
           <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md border border-gray-700">
             <h4 className="text-xl font-semibold text-gray-100 mb-4">
               Create New Book
@@ -138,7 +145,7 @@ const HomePage: React.FC = () => {
         </div>
       )}
 
-      <section className="relative py-16 px-4 md:px-16 z-10">
+      <section className="relative py-16 px-4 md:px-16">
         <h3 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-violet-600">
           Why FLAP?
         </h3>
@@ -159,7 +166,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <section className="relative py-16 px-4 md:px-16 bg-gradient-to-r from-gray-900 to-gray-800 z-10">
+      <section className="relative py-16 px-4 md:px-16 bg-gradient-to-r from-gray-900 to-gray-800 ">
         <h3 className="text-3xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-violet-600">
           Your Recent Books
         </h3>
@@ -196,7 +203,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {deleteBookId && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center">
           <div className="bg-gray-800 rounded-lg p-6 w-full max-w-md border border-gray-700">
             <h4 className="text-xl font-semibold text-gray-100 mb-4">
               Delete Book
