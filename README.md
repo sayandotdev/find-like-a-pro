@@ -33,16 +33,20 @@ A Next.js web application for managing book-related content, allowing users to i
 ## Screenshots
 
 ### Homepage
-![Homepage Screenshot](screenshots/homepage.png)
+
+![Homepage Screenshot](./public/screenshots/homepage.png)
 
 ### Book Page - Text Tab
-![Text Tab Screenshot](screenshots/text-tab.png)
+
+![Text Tab Screenshot](./public/screenshots/text.png)
 
 ### Book Page - File Upload Tab
-![File Upload Tab Screenshot](screenshots/file-upload-tab.png)
+
+![File Upload Tab Screenshot](./public/screenshots/filetab.png)
 
 ### File Upload - File Selected
-![File Selected Screenshot](screenshots/file-selected.png)
+
+![File Selected Screenshot](./public/screenshots/selected-file.png)
 
 > **Note**: Replace `screenshots/*.png` with the actual paths to your screenshots after adding them to a `/screenshots` folder in the repository.
 
@@ -62,10 +66,12 @@ A Next.js web application for managing book-related content, allowing users to i
    ```bash
    git clone https://github.com/your-username/book-content-management.git
    cd book-content-management
+   ```
 2. **Install Dependencies**:
    ```bash
     npm install
-2. **Set Up Tailwind CSS**:
+   ```
+3. **Set Up Tailwind CSS**:
    ```bash
         /** @type {import('tailwindcss').Config} */
         module.exports = {
@@ -91,7 +97,9 @@ A Next.js web application for managing book-related content, allowing users to i
         },
         plugins: [require("@tailwindcss/forms")],
     }
+   ```
 4. **Setup global Styles**:
+
    ```bash
     @tailwind base;
         @tailwind components;
@@ -114,12 +122,15 @@ A Next.js web application for managing book-related content, allowing users to i
         .animate-particle-3 { animation: particle-3 9s ease-in-out infinite; }
         .animate-particle-4 { animation: particle-4 7s ease-in-out infinite; }
 
-4. **Add Icons**:
+   ```
+
+5. **Add Icons**:
    Ensure `/public/icons.svg` exists with the `book-open` symbol (optional, used if homepage includes book icons).
 
-5. **Run the Development Server**
-    ```bash
-    npm run dev
+6. **Run the Development Server**
+   ```bash
+   npm run dev
+   ```
 
 Open http://localhost:3000 in your browser.
 
@@ -127,17 +138,17 @@ Open http://localhost:3000 in your browser.
 
 book-content-management/
 ├── app/
-│   ├── book/
-│   │   ├── [id]/
-│   │   │   ├── page.tsx            # Book page with tabs and chatbox
-│   │   │   ├── Tabs.tsx            # Tabbed interface with fade-slide animation
-│   │   │   ├── TextInput.tsx       # Text input component
-│   │   │   ├── FileUpload.tsx      # File upload component (PDF, DOC/DOCX, CSV)
-│   │   │   ├── Chatbox.tsx         # Chatbox component
-│   ├── globals.css                 # Global styles with Tailwind and animations
+│ ├── book/
+│ │ ├── [id]/
+│ │ │ ├── page.tsx # Book page with tabs and chatbox
+│ │ │ ├── Tabs.tsx # Tabbed interface with fade-slide animation
+│ │ │ ├── TextInput.tsx # Text input component
+│ │ │ ├── FileUpload.tsx # File upload component (PDF, DOC/DOCX, CSV)
+│ │ │ ├── Chatbox.tsx # Chatbox component
+│ ├── globals.css # Global styles with Tailwind and animations
 ├── public/
-│   ├── icons.svg                   # SVG sprite for icons (e.g., book-open)
-├── screenshots/                    # Folder for screenshots
-├── tailwind.config.js              # Tailwind CSS configuration
-├── package.json                    # Dependencies and scripts
-├── README.md                       # This file
+│ ├── icons.svg # SVG sprite for icons (e.g., book-open)
+├── screenshots/ # Folder for screenshots
+├── tailwind.config.js # Tailwind CSS configuration
+├── package.json # Dependencies and scripts
+├── README.md # This file
