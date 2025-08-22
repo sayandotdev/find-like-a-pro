@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Send } from "lucide-react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import Markdown from "react-markdown";
 
 interface Message {
   role: "user" | "bot";
@@ -135,7 +136,7 @@ const Chatbox: React.FC = () => {
                   : "bg-violet-600/20 border border-violet-500 text-gray-100"
               }`}
             >
-              <p className="text-gray-300">{msg.content}</p>
+              <Markdown>{msg.content}</Markdown>
             </div>
             {msg.role === "user" && (
               <Image
@@ -168,6 +169,7 @@ const Chatbox: React.FC = () => {
         <input
           type="text"
           value={chatInput}
+          autoFocus={true}
           onChange={(e) => setChatInput(e.target.value)}
           placeholder="Ask something..."
           className="flex-1 p-2 bg-gray-900 text-gray-100 border border-gray-700 rounded focus:outline-none focus:border-pink-500"

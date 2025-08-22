@@ -131,8 +131,10 @@ const HomePage: React.FC = () => {
             <input
               type="text"
               value={newBookName}
+              autoFocus={true}
               onChange={(e) => setNewBookName(e.target.value)}
               placeholder="Enter book name"
+              onKeyDown={(e) => e.key === "Enter" && handleCreateBook()}
               className="w-full p-2 mb-4 bg-gray-900 text-gray-100 border border-gray-700 rounded focus:outline-none focus:border-pink-500"
             />
             <div className="flex justify-end gap-4">

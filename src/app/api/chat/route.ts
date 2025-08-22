@@ -3,6 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { QdrantVectorStore } from "@langchain/qdrant";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { qdrantClient } from "@/config/qdrant.config";
+import { refreshUserQuery } from "./QueryRefresher";
 
 export const runtime = "nodejs";
 
@@ -40,7 +41,8 @@ export async function POST(request: NextRequest) {
       k: 3,
     });
 
-    const relevantChunks = await vectorSearcher.invoke(message);
+    const improvedMessage = await refreshUserQuery({ message });
+    const relevantChunks = await vectorSearcher.invoke(improvedMessage);
 
     const SYSTEM_PROMPT = `
       You are an AI assistant who helps resolve user queries based only on the context from the specified book's collection.
